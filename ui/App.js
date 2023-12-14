@@ -1,20 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function App() {
+import SignupScreen from "./src/screens/SignupScreen";
+import SigninScreen from "./src/screens/SigninScreen";
+import TrackListScreen from "./src/screens/TrackListScreen";
+import TrackDetailScreen from "./src/screens/TrackDetailScreen";
+import TrackCreateScreen from "./src/screens/TrackCreateScreen";
+import AccountScreen from "./src/screens/AccountScreen";
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const MainFlow = () => {
+  <Tab.Navigator>
+    <Tab.Screen name="TrackList" component={TrackListScreen} />
+    <Tab.Screen name="TrackCreate" component={TrackCreateScreen} />
+    <Tab.Screen name="Account" component={AccountScreen} />
+  </Tab.Navigator>;
+};
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerTitle: "Blog list" }}>
+        <Stack.Screen name="Signup" component={SignupScreen} />
+        <Stack.Screen name="Signin" component={SigninScreen} />
+        <Stack.Screen name="MainFlow" component={MainFlow} />
+        <Stack.Screen name="TrackDetail" component={TrackDetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
