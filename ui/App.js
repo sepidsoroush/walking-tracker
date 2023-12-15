@@ -24,7 +24,7 @@ const MainFlow = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerTitle: "Blog list" }}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="Signin" component={SigninScreen} />
         <Stack.Screen name="MainFlow" component={MainFlow} />
