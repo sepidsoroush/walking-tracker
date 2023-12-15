@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { Input, Text, Button } from "@rneui/themed";
 import { FontAwesome } from "@expo/vector-icons";
 import Spacer from "./Spacer";
 
-const AuthForm = ({ title, onSubmit }) => {
+const AuthForm = ({ title, onSubmit, errorMessage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,10 +36,12 @@ const AuthForm = ({ title, onSubmit }) => {
           autoCorrect={false}
         />
       </Spacer>
-
+      {errorMessage ? (
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+      ) : null}
       <Spacer>
         <Button
-          onPress={onSubmit}
+          onPress={() => onSubmit({ email, password })}
           title={title}
           buttonStyle={{
             backgroundColor: "black",
@@ -60,6 +62,13 @@ const AuthForm = ({ title, onSubmit }) => {
 
 const styles = StyleSheet.create({
   title: {
+    textAlign: "center",
+  },
+  errorMessage: {
+    fontSize: 16,
+    color: "red",
+    // marginLeft: 15,
+    marginTop: 15,
     textAlign: "center",
   },
 });
