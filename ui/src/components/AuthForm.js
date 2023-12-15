@@ -27,6 +27,7 @@ const AuthForm = ({ title, onSubmit }) => {
       </Spacer>
       <Spacer>
         <Input
+          secureTextEntry
           label="Password"
           value={password}
           onChangeText={setPassword}
