@@ -1,7 +1,9 @@
 import axios from "axios";
-
-const baseUrl = process.env.EXPO_PUBLIC_BASE_URL;
+import { EXPO_PUBLIC_BASE_URL } from "@env";
 
 export default axios.create({
-  baseURL: baseUrl,
+  baseURL: EXPO_PUBLIC_BASE_URL,
+  headers: {
+    "Content-type": "application/json",
+  },
 });
