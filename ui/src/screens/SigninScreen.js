@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button } from "@rneui/themed";
 import AuthForm from "../components/AuthForm";
@@ -6,8 +6,15 @@ import { Context as AuthContext } from "../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 
 const SigninScreen = () => {
-  const { state, signin } = useContext(AuthContext);
+  const { state, signin, clearErrorMessage } = useContext(AuthContext);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("blur", () => {
+      clearErrorMessage();
+    });
+    return unsubscribe;
+  }, [navigation, clearErrorMessage]);
 
   return (
     <View style={styles.container}>
