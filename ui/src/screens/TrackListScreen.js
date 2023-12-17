@@ -1,8 +1,22 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
+import { Button } from "@rneui/themed";
+import { useNavigation } from "@react-navigation/native";
 
 const TrackListScreen = () => {
-  return <Text>Track List screen</Text>;
+  const navigation = useNavigation();
+
+  return (
+    <View>
+      <Text>Track List screen</Text>
+      <Button
+        title="Go to Track's Detail"
+        type="clear"
+        size="sm"
+        onPress={() => navigation.navigate("Track Detail")}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({});

@@ -48,20 +48,25 @@ const signin = (dispatch) => {
 };
 
 const signout = (dispatch) => {
-  return () => {
+  return async () => {
+    await AsyncStorage.removeItem("token");
     dispatch({ type: "SIGN_OUT" });
   };
 };
 
-const tryLocalSignin = (dispatch) => async () => {
-  const token = await AsyncStorage.getItem("token");
-  if (token) {
-    dispatch({ type: "SIGN_IN", payload: token });
-  }
+const tryLocalSignin = (dispatch) => {
+  return async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (token) {
+      dispatch({ type: "SIGN_IN", payload: token });
+    }
+  };
 };
 
-const clearErrorMessage = (dispatch) => async () => {
-  dispatch({ type: "CLEAR_ERROR" });
+const clearErrorMessage = (dispatch) => {
+  return async () => {
+    dispatch({ type: "CLEAR_ERROR" });
+  };
 };
 
 export const { Context, Provider } = createDataContext(

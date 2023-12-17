@@ -8,9 +8,9 @@ const Stack = createStackNavigator();
 
 export default function TrackListNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="TrackList" component={TrackListScreen} />
-      <Stack.Screen name="TrackDetail" component={TrackDetailScreen} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Main List" component={TrackListScreen} />
+      <Stack.Screen name="Track Detail" component={TrackDetailScreen} />
     </Stack.Navigator>
   );
 }

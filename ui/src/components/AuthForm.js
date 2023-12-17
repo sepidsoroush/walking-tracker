@@ -4,7 +4,7 @@ import { Input, Text, Button } from "@rneui/themed";
 import { FontAwesome } from "@expo/vector-icons";
 import Spacer from "./Spacer";
 
-const AuthForm = ({ title, onSubmit, errorMessage }) => {
+const AuthForm = ({ title, type, onSubmit, errorMessage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +12,7 @@ const AuthForm = ({ title, onSubmit, errorMessage }) => {
     <>
       <Spacer>
         <Text h3 style={styles.title}>
-          {title} Screen
+          {title}
         </Text>
       </Spacer>
       <Spacer>
@@ -42,7 +42,7 @@ const AuthForm = ({ title, onSubmit, errorMessage }) => {
       <Spacer>
         <Button
           onPress={() => onSubmit({ email, password })}
-          title={title}
+          title={type}
           buttonStyle={{
             backgroundColor: "black",
             borderWidth: 2,

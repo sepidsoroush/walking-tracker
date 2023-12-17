@@ -24,16 +24,16 @@ const App = () => {
   return (
     <NavigationContainer>
       {state.token ? (
-        <Tab.Navigator initialRouteName="TrackListNavigator">
-          <Tab.Screen
-            name="TrackListNavigator"
-            component={TrackListNavigator}
-          />
-          <Tab.Screen name="TrackCreate" component={TrackCreateScreen} />
+        <Tab.Navigator initialRouteName="Track List">
+          <Tab.Screen name="Track List" component={TrackListNavigator} />
+          <Tab.Screen name="Create Track" component={TrackCreateScreen} />
           <Tab.Screen name="Account" component={AccountScreen} />
         </Tab.Navigator>
       ) : (
-        <Stack.Navigator initialRouteName="Signup">
+        <Stack.Navigator
+          initialRouteName="Signup"
+          screenOptions={{ headerShown: false }}
+        >
           <Stack.Screen name="Signup" component={SignupScreen} />
           <Stack.Screen name="Signin" component={SigninScreen} />
         </Stack.Navigator>

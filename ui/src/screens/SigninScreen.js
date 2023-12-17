@@ -19,7 +19,8 @@ const SigninScreen = () => {
   return (
     <View style={styles.container}>
       <AuthForm
-        title="Sign in"
+        title="Sign In to Your Account"
+        type="Sign in"
         onSubmit={signin}
         errorMessage={state.errorMessage}
       />
