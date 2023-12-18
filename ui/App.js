@@ -9,8 +9,9 @@ import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import AccountScreen from "./src/screens/AccountScreen";
 import TrackListNavigator from "./src/screens/TrackListNavigator";
 
-import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { Context as AuthContext } from "./src/context/AuthContext";
+import { Provider as AuthProvider } from "./src/context/AuthContext";
+import { Provider as LocationProvider } from "./src/context/LocationContext";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -44,8 +45,10 @@ const App = () => {
 
 export default () => {
   return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <LocationProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </LocationProvider>
   );
 };
