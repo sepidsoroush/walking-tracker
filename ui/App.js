@@ -12,6 +12,7 @@ import TrackListNavigator from "./src/screens/TrackListNavigator";
 import { Context as AuthContext } from "./src/context/AuthContext";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { Provider as LocationProvider } from "./src/context/LocationContext";
+import { Provider as TrackProvider } from "./src/context/TrackContext";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,10 +46,12 @@ const App = () => {
 
 export default () => {
   return (
-    <LocationProvider>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </LocationProvider>
+    <TrackProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </LocationProvider>
+    </TrackProvider>
   );
 };
