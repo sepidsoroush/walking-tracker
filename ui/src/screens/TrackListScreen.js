@@ -1,24 +1,53 @@
-import React from "react";
-import { Text, StyleSheet, View } from "react-native";
-import { Button } from "@rneui/themed";
+import React, { useEffect, useContext } from "react";
+import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { Text, ListItem } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
+import { Context as TrackContext } from "../context/TrackContext";
 
 const TrackListScreen = () => {
   const navigation = useNavigation();
+  const { state, fetchTracks } = useContext(TrackContext);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      fetchTracks();
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   return (
-    <View>
-      <Text>Track List screen</Text>
-      <Button
-        title="Go to Track's Detail"
-        type="clear"
-        size="sm"
-        onPress={() => navigation.navigate("Track Detail")}
+    <>
+      <Text h3 style={styles.title}>
+        Track List Screen
+      </Text>
+      <FlatList
+        data={state}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Track Detail", { _id: item._id })
+              }
+            >
+              <ListItem>
+                <ListItem.Content>
+                  <ListItem.Title>{item.name}</ListItem.Title>
+                </ListItem.Content>
+                <ListItem.Chevron />
+              </ListItem>
+            </TouchableOpacity>
+          );
+        }}
       />
-    </View>
+    </>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  title: {
+    textAlign: "center",
+  },
+});
 
 export default TrackListScreen;
