@@ -26,9 +26,6 @@ const TrackCreateScreen = () => {
 
   return (
     <View>
-      <Text h3 style={styles.title}>
-        Create a Track
-      </Text>
       <Spacer>
         <Map />
         {err && <Text>Please enable location services.</Text>}

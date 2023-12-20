@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
-import { Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { Text } from "@rneui/themed";
+import Spacer from "../components/Spacer";
 import { Context as TrackContext } from "../context/TrackContext";
 import MapView, { Polyline, Circle } from "react-native-maps";
 
@@ -12,7 +14,12 @@ const TrackDetailScreen = ({ route }) => {
 
   return (
     <>
-      <Text>{track.name}</Text>
+      <Spacer>
+        <Text h4 style={styles.title}>
+          {track.name}
+        </Text>
+      </Spacer>
+
       <MapView
         initialRegion={{
           ...initialCoords,
@@ -28,8 +35,12 @@ const TrackDetailScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+  title: {
+    textAlign: "center",
+  },
   map: {
     height: 300,
+    marginHorizontal: 10,
   },
 });
 

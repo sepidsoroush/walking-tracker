@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from "react";
+import { Ionicons } from "@expo/vector-icons";
+
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -26,10 +28,45 @@ const App = () => {
   return (
     <NavigationContainer>
       {state.token ? (
-        <Tab.Navigator initialRouteName="Track List">
-          <Tab.Screen name="Track List" component={TrackListNavigator} />
-          <Tab.Screen name="Create Track" component={TrackCreateScreen} />
-          <Tab.Screen name="Account" component={AccountScreen} />
+        <Tab.Navigator
+          initialRouteName="Track List"
+          screenOptions={{
+            tabBarActiveTintColor: "#e91e63",
+          }}
+        >
+          <Tab.Screen
+            name="Track List"
+            component={TrackListNavigator}
+            options={{
+              tabBarLabel: "Home",
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="home" size={24} color={color} />
+              ),
+              tabBarLabelStyle: { fontSize: 12 },
+            }}
+          />
+          <Tab.Screen
+            name="Create Track"
+            component={TrackCreateScreen}
+            options={{
+              tabBarLabel: "Create",
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="location-sharp" size={24} color={color} />
+              ),
+              tabBarLabelStyle: { fontSize: 12 },
+            }}
+          />
+          <Tab.Screen
+            name="Account"
+            component={AccountScreen}
+            options={{
+              tabBarLabel: "Account",
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="settings" size={24} color={color} />
+              ),
+              tabBarLabelStyle: { fontSize: 12 },
+            }}
+          />
         </Tab.Navigator>
       ) : (
         <Stack.Navigator

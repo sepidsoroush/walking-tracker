@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
-import { Text, ListItem } from "@rneui/themed";
+import { ListItem } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { Context as TrackContext } from "../context/TrackContext";
 
@@ -17,9 +17,6 @@ const TrackListScreen = () => {
 
   return (
     <>
-      <Text h3 style={styles.title}>
-        Track List Screen
-      </Text>
       <FlatList
         data={state}
         keyExtractor={(item) => item._id}
